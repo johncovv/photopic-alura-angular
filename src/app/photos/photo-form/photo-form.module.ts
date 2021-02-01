@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // components
-import { NotFoundComponent } from './not-found/not-found.component';
+import { PhotoFormComponent } from './photo-form.component';
 
 @NgModule({
 	imports: [CommonModule],
-	declarations: [NotFoundComponent],
+	declarations: [PhotoFormComponent],
 })
-export class ErrorsModule {}
+export class PhotoFormModule {}

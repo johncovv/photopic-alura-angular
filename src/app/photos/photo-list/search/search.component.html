@@ -1,0 +1,14 @@
+<div class="text-center mb-3">
+	<form onsubmit="return false">
+		<i aria-hidden="true" class="fa fa-search mr-2"></i>
+		<input
+			#filterInput
+			class="rounded px-2 py-1"
+			type="search"
+			placeholder="search..."
+			autofocus
+			(keyup)="debounce.next(filterInput.value)"
+			[value]="value"
+		/>
+	</form>
+</div>

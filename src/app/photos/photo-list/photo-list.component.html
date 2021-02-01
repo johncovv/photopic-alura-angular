@@ -1,17 +1,5 @@
-<div class="w-100">
-	<div class="text-center mt-3 mb-3">
-		<form onsubmit="return false">
-			<input
-				#filterInput
-				class="rounded px-2 py-1"
-				type="search"
-				placeholder="search..."
-				autofocus
-				(keyup)="debounce.next(filterInput.value)"
-			/>
-		</form>
-	</div>
-	{{ filter }}
+<app-search (onTyping)="filter = $event" [value]="filter"></app-search>
 
-	<app-photos [photos]="photos | filterByDescription: filter"></app-photos>
-</div>
+<app-photos [photos]="photos | filterByDescription: filter"></app-photos>
+
+<app-load-button (click)="load()" [hasMore]="hasMore"></app-load-button>
