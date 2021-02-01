@@ -2,8 +2,13 @@
 
 <ol class="linst-unstyled">
 	<li *ngFor="let cols of rows" class="row no-gutters">
-		<div class="col-4" *ngFor="let photo of cols">
-			<app-card [title]="photo.description">
+		<div
+			class="col-4"
+			*ngFor="let photo of cols"
+			appDarkenOnHover
+			brightness="80"
+		>
+			<app-card>
 				<app-photo
 					[url]="photo.url"
 					[description]="photo.description"
