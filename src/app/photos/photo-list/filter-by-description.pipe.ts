@@ -13,7 +13,7 @@ export class FilterByDescription implements PipeTransform {
 			return photos;
 		} else {
 			return photos.filter((photo) =>
-				photo.description.toLowerCase().includes(descriptionQuery)
+				photo.description.toLowerCase().includes(descriptionQuery),
 			);
 		}
 	}

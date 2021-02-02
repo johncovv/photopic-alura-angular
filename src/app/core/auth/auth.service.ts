@@ -28,12 +28,12 @@ export class AuthService {
 	constructor(
 		private http: HttpClient,
 		private tokenService: TokenService,
-		private userService: UserService
+		private userService: UserService,
 	) {}
 
 	authenticate(
 		userName: string,
-		password: string
+		password: string,
 	): Observable<IHttpUserResponse> {
 		return (this.http
 			.post<IHttpUserResponse>(
@@ -44,7 +44,7 @@ export class AuthService {
 				},
 				{
 					observe: 'response',
-				}
+				},
 			)
 			.pipe(
 				tap((res) => {
@@ -55,9 +55,9 @@ export class AuthService {
 					this.userService.setUser(user);
 
 					console.log(
-						`User ${user.name} authenticated with token ${authToken}`
+						`User ${user.name} authenticated with token ${authToken}`,
 					);
-				})
+				}),
 			) as unknown) as Observable<IHttpUserResponse>;
 	}
 }

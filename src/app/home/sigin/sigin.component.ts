@@ -18,7 +18,7 @@ export class SigInComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private authService: AuthService,
 		private router: Router,
-		private platformDetectorService: PlatformDetectorService
+		private platformDetectorService: PlatformDetectorService,
 	) {}
 
 	ngOnInit(): void {
@@ -51,7 +51,7 @@ export class SigInComponent implements OnInit {
 					this.userName.nativeElement.focus();
 
 				alert('Invalid user name or password!');
-			}
+			},
 		);
 	}
 }

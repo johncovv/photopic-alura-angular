@@ -12,13 +12,13 @@ export class PhotoService {
 
 	listFromUser(userName: string): Observable<Array<IPhoto>> {
 		return this.http.get<Array<IPhoto>>(
-			`http://localhost:3333/${userName}/photos`
+			`http://localhost:3333/${userName}/photos`,
 		);
 	}
 
 	listFromUserPaginated(
 		userName: string,
-		page: number
+		page: number,
 	): Observable<Array<IPhoto>> {
 		const params = new HttpParams().append('page', page.toString());
 
@@ -26,7 +26,7 @@ export class PhotoService {
 			`http://localhost:3333/${userName}/photos`,
 			{
 				params,
-			}
+			},
 		);
 	}
 }
