@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Developments
+.env*
+
 # compiled output
 /dist
 /tmp
@@ -22,6 +25,7 @@ speed-measure-plugin*.json
 *.launch
 .settings/
 *.sublime-workspace
+tslint.json
 
 # IDE - VSCode
 .vscode/*

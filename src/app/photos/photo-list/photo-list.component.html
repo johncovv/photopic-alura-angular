@@ -1,4 +1,4 @@
-<app-search (onTyping)="filter = $event" [value]="filter"></app-search>
+<app-search (handleTyping)="filter = $event" [value]="filter"></app-search>
 
 <app-photos [photos]="photos | filterByDescription: filter"></app-photos>
 

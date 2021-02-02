@@ -16,10 +16,10 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 	// creates an eventEmitter to communicate on the component's own call
-	@Output() onTyping = new EventEmitter<string>();
+	@Output() handleTyping = new EventEmitter<string>();
+	@Input() value: string = '';
 
 	debounce: Subject<string> = new Subject<string>();
-	@Input() value: string = '';
 
 	constructor() {}
 
@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 		this.debounce
 			.pipe(debounceTime(300))
 			// execute the event and pass the return value
-			.subscribe((filter) => this.onTyping.emit(filter));
+			.subscribe((filter) => this.handleTyping.emit(filter));
 	}
 
 	ngOnDestroy(): void {

@@ -8,9 +8,16 @@ import { PhotosModule } from './photos/photos.module';
 
 // components
 import { AppComponent } from './app.component';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
-	imports: [BrowserModule, AppRoutingModule, PhotosModule, ErrorsModule],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		PhotosModule,
+		ErrorsModule,
+		HomeModule,
+	],
 	declarations: [AppComponent],
 	providers: [],
 	bootstrap: [AppComponent],

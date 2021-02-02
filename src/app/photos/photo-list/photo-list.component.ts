@@ -8,7 +8,6 @@ import IPhoto from '../photo/photo';
 import { PhotoService } from '../photo/photo.service';
 
 @Component({
-	selector: 'app-photo-list',
 	templateUrl: './photo-list.component.html',
 	styleUrls: ['./photo-list.component.less'],
 })
@@ -31,7 +30,7 @@ export class PhotoListComponent implements OnInit {
 		this.photos = this.activatedRoute.snapshot.data.photos;
 	}
 
-	load() {
+	load(): void {
 		this.photoService
 			.listFromUserPaginated(this.userName, ++this.currentPage)
 			.subscribe((photos) => {
