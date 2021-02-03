@@ -10,6 +10,9 @@ import { PhotoService } from '../photo/photo.service';
 @Component({
 	templateUrl: './photo-list.component.html',
 	styleUrls: ['./photo-list.component.less'],
+	host: {
+		class: 'mx-auto',
+	},
 })
 export class PhotoListComponent implements OnInit {
 	photos: Array<IPhoto> = [];

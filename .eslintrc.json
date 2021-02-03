@@ -16,6 +16,9 @@
 				"plugin:prettier/recommended"
 			],
 			"rules": {
+				"no-console": ["warn", { "allow": ["error", "warn", "info"] }],
+				"@typescript-eslint/no-unused-expressions": "off",
+				"@angular-eslint/no-host-metadata-property": "off",
 				"@angular-eslint/component-selector": [
 					"error",
 					{

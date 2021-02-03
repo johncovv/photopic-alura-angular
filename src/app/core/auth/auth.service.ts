@@ -6,17 +6,12 @@ import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 // services
-import { TokenService } from '../localstorage/token/token.service';
-import { UserService } from '../localstorage/user/user.service';
+import { UserService } from '../user/user.service';
 
-interface IResponseUser {
-	id: number;
-	name: string;
-	email: string;
-}
+import { IUser } from '../user/user';
 
 interface IHttpUserResponse extends HttpResponse<Record<string, any>> {
-	body: IResponseUser;
+	body: IUser;
 }
 
 @Injectable({
@@ -25,11 +20,7 @@ interface IHttpUserResponse extends HttpResponse<Record<string, any>> {
 export class AuthService {
 	apiUrl: string = environment.apiUrl;
 
-	constructor(
-		private http: HttpClient,
-		private tokenService: TokenService,
-		private userService: UserService,
-	) {}
+	constructor(private http: HttpClient, private userService: UserService) {}
 
 	authenticate(
 		userName: string,
@@ -48,15 +39,11 @@ export class AuthService {
 			)
 			.pipe(
 				tap((res) => {
-					const user = (res.body as unknown) as IResponseUser;
 					const authToken = res.headers.get('x-access-token') as string;
 
-					this.tokenService.setToken(authToken);
-					this.userService.setUser(user);
+					this.userService.setToken(authToken);
 
-					console.log(
-						`User ${user.name} authenticated with token ${authToken}`,
-					);
+					console.log(`User ${userName} authenticated with token ${authToken}`);
 				}),
 			) as unknown) as Observable<IHttpUserResponse>;
 	}

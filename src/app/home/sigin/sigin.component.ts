@@ -9,6 +9,9 @@ import { PlatformDetectorService } from 'src/app/core/platform-detector/platform
 @Component({
 	templateUrl: './sigin.component.html',
 	styleUrls: ['./sigin.component.less'],
+	host: {
+		class: 'container',
+	},
 })
 export class SigInComponent implements OnInit {
 	@ViewChild('userNameInput') userName!: ElementRef<HTMLInputElement>;
