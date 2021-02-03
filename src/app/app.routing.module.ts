@@ -10,10 +10,14 @@ import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 import { SigInComponent } from './home/sigin/sigin.component';
 
+// guards
+import { AuthGuard } from './core/auth/auth.guard';
+
 const routes: Routes = [
 	{
 		path: '',
 		component: SigInComponent,
+		canActivate: [AuthGuard],
 	},
 	{
 		path: 'user/:userName',
