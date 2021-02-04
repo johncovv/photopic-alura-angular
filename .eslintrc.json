@@ -1,6 +1,19 @@
 {
 	"root": true,
-	"ignorePatterns": ["projects/**/*"],
+	"ignorePatterns": ["projects/**/*", "**/*.spec.ts"],
+	"rules": {
+		"import/order": [
+			"error",
+			{
+				"groups": ["builtin", "external", "parent", "sibling", "index"],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": true
+				}
+			}
+		]
+	},
 	"overrides": [
 		{
 			"files": ["*.ts"],
@@ -33,6 +46,17 @@
 						"type": "attribute",
 						"prefix": "app",
 						"style": "camelCase"
+					}
+				],
+				"@typescript-eslint/naming-convention": [
+					"error",
+					{
+						"selector": "interface",
+						"format": ["PascalCase"],
+						"custom": {
+							"regex": "^I[A-Z]",
+							"match": true
+						}
 					}
 				],
 				"@typescript-eslint/no-inferrable-types": "off",

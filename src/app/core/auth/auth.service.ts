@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-
-// services
+import { IUser } from '../user/user';
 import { UserService } from '../user/user.service';
 
-import { IUser } from '../user/user';
+const { apiUrl } = environment;
 
 interface IHttpUserResponse extends HttpResponse<Record<string, any>> {
 	body: IUser;
@@ -18,8 +17,6 @@ interface IHttpUserResponse extends HttpResponse<Record<string, any>> {
 	providedIn: 'root',
 })
 export class AuthService {
-	apiUrl: string = environment.apiUrl;
-
 	constructor(private http: HttpClient, private userService: UserService) {}
 
 	authenticate(
@@ -28,7 +25,7 @@ export class AuthService {
 	): Observable<IHttpUserResponse> {
 		return (this.http
 			.post<IHttpUserResponse>(
-				`${this.apiUrl}/user/login`,
+				`${apiUrl}/user/login`,
 				{
 					userName,
 					password,

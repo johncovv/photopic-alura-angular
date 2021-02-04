@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-// components
 import { PhotoFormComponent } from './photo-form.component';
 
 @NgModule({

@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 // modules
-import { ErrorsModule } from './errors/errors.module';
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
-import { PhotosModule } from './photos/photos.module';
-import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
+import { ErrorsModule } from './errors/errors.module';
+import { HomeModule } from './home/home.module';
+import { PhotosModule } from './photos/photos.module';
 
 // components
-import { AppComponent } from './app.component';
 
 @NgModule({
 	imports: [

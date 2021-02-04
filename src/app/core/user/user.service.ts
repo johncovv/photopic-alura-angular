@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
+import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import jwt_decode from 'jwt-decode';
-
-// services
 import { TokenService } from '../token/token.service';
 
 import { IUser } from './user.d';

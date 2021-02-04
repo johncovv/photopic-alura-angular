@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
 	ActivatedRouteSnapshot,
@@ -6,8 +5,8 @@ import {
 	Router,
 	RouterStateSnapshot,
 } from '@angular/router';
+import { Observable } from 'rxjs';
 
-// services
 import { UserService } from './../user/user.service';
 
 @Injectable({

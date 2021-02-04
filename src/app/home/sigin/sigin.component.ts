@@ -2,9 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-// services
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { PlatformDetectorService } from 'src/app/core/platform-detector/platform.detector.service';
+import { AuthService } from '../../core/auth/auth.service';
+import { PlatformDetectorService } from '../../core/platform-detector/platform.detector.service';
 
 @Component({
 	templateUrl: './sigin.component.html',

@@ -6,9 +6,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { PhotoService } from '../photo/photo.service';
-
 import IPhoto from '../photo/photo';
+import { PhotoService } from '../photo/photo.service';
 
 @Injectable({
 	providedIn: 'root',
