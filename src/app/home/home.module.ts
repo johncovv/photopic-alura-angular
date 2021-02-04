@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
 
+import { HomeComponent } from './home.component';
 import { SigInComponent } from './sigin/sigin.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -16,6 +17,6 @@ import { SignupComponent } from './signup/signup.component';
 		RouterModule,
 		VMessageModule,
 	],
-	declarations: [SigInComponent, SignupComponent],
+	declarations: [SigInComponent, SignupComponent, HomeComponent],
 })
 export class HomeModule {}

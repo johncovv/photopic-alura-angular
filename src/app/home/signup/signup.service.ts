@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { environment } from './../../../environments/environment';
+import { environment } from '../../../environments/environment';
+
 import { INewUser } from './newUser.d';
 
 const { apiUrl } = environment;

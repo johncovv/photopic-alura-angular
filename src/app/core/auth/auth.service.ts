@@ -39,8 +39,6 @@ export class AuthService {
 					const authToken = res.headers.get('x-access-token') as string;
 
 					this.userService.setToken(authToken);
-
-					console.log(`User ${userName} authenticated with token ${authToken}`);
 				}),
 			) as unknown) as Observable<IHttpUserResponse>;
 	}
