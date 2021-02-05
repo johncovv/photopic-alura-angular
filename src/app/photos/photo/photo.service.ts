@@ -38,4 +38,8 @@ export class PhotoService {
 
 		return this.http.post(`${apiUrl}/photos/upload`, formData);
 	}
+
+	findById(photoId: string): Observable<IPhoto> {
+		return this.http.get<IPhoto>(`${apiUrl}/photos/${photoId}`);
+	}
 }

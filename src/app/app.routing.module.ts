@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthenticatedGuard } from './core/auth/authenticated.guard';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { PhotoDetailsComponent } from './photos/photo-details/photo-details.component';
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
@@ -24,6 +25,10 @@ const routes: Routes = [
 		path: 'photo/add',
 		component: PhotoFormComponent,
 		canActivate: [AuthenticatedGuard],
+	},
+	{
+		path: 'photo/:photoId',
+		component: PhotoDetailsComponent,
 	},
 	{
 		path: '**',

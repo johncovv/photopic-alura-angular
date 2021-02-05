@@ -8,18 +8,20 @@
 			appDarkenOnHover
 			brightness="80"
 		>
-			<app-card>
-				<app-photo
-					[url]="photo.url"
-					[description]="photo.description"
-				></app-photo>
-				<div class="text-center">
-					<i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i
-					>{{ photo.likes }}
-					<i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i
-					>{{ photo.comments }}
-				</div>
-			</app-card>
+			<a [routerLink]="['/photo', photo.id]">
+				<app-card>
+					<app-photo
+						[url]="photo.url"
+						[description]="photo.description"
+					></app-photo>
+					<div class="text-center">
+						<i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2"></i
+						>{{ photo.likes }}
+						<i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2"></i
+						>{{ photo.comments }}
+					</div>
+				</app-card>
+			</a>
 		</div>
 	</li>
 </ol>
