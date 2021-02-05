@@ -9,11 +9,6 @@ import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 const routes: Routes = [
 	{
 		path: '',
-		pathMatch: 'full',
-		redirectTo: 'home',
-	},
-	{
-		path: 'home',
 		// load the child route module using lazy loading
 		loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
 	},

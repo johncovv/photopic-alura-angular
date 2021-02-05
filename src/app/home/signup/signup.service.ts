@@ -8,9 +8,7 @@ import { INewUser } from './newUser.d';
 
 const { apiUrl } = environment;
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable()
 export class SignupService {
 	constructor(private http: HttpClient) {}
 
