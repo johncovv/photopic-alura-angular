@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { UserService } from '../user/user.service';
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.less'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 	user$: Observable<IUser | undefined>;
 
 	constructor(private userService: UserService, private router: Router) {
@@ -22,6 +22,4 @@ export class HeaderComponent implements OnInit {
 		this.userService.logout();
 		this.router.navigate(['']);
 	}
-
-	ngOnInit(): void {}
 }

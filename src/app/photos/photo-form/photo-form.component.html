@@ -1,1 +1,63 @@
-<p>photo-form works!</p>
+<form [formGroup]="photoForm" class="row" (submit)="upload()">
+	<div class="col-md-6 text-center">
+		<div class="form-group" *ngIf="!preview; else previewImage">
+			<input
+				#fileInput
+				formControlName="file"
+				(change)="handleFile($event.target)"
+				type="file"
+				accept="image/*"
+				hidden
+			/>
+			<button
+				appImmediateClick
+				type="button"
+				(click)="fileInput.click()"
+				class="btn btn-primary"
+			>
+				<i class="fa fa-image fa-4x align-middle"></i>
+			</button>
+			<app-vmessage
+				*ngIf="photoForm.get('file')?.errors?.required"
+				text="An image is required"
+			></app-vmessage>
+		</div>
+		<ng-template #previewImage>
+			<div class="text-center w-100">
+				<app-photo [url]="preview" title="Preview"> </app-photo>
+			</div>
+		</ng-template>
+	</div>
+
+	<div class="col-md-6">
+		<div class="form-group">
+			<textarea
+				maxlength="300"
+				formControlName="description"
+				class="form-control form-control-sm"
+				placeholder="photo description"
+			></textarea>
+			<app-vmessage
+				*ngIf="photoForm.get('description')?.errors?.maxlength"
+				text="Max length 300"
+			></app-vmessage>
+		</div>
+
+		<div class="form-group">
+			<label class="text-muted">
+				Allow comments
+				<input formControlName="allowComments" type="checkbox" />
+			</label>
+		</div>
+
+		<button
+			[disabled]="photoForm.invalid"
+			type="submit"
+			class="btn btn-primary btn-block"
+		>
+			Upload
+		</button>
+
+		<a class="btn btn-secondary btn-block">Cancel</a>
+	</div>
+</form>

@@ -8,3 +8,9 @@ export default interface IPhoto {
 	postData: Date;
 	userId: number;
 }
+
+export interface IPhotoUpload {
+	description: string;
+	allowComments: boolean;
+	imageFile: File;
+}

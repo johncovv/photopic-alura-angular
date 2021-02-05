@@ -9,10 +9,10 @@ import { PhotosModule } from './photos/photos.module';
 
 @NgModule({
 	imports: [
+		CoreModule,
 		BrowserModule,
 		PhotosModule,
 		ErrorsModule,
-		CoreModule,
 		AppRoutingModule,
 	],
 	declarations: [AppComponent],
