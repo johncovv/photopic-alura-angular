@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	OnInit,
+	ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,7 +17,9 @@ import { PhotoService } from '../photo/photo.service';
 		class: 'container pt-3',
 	},
 })
-export class PhotoFormComponent implements OnInit {
+export class PhotoFormComponent implements OnInit, AfterViewInit {
+	@ViewChild('descriptionInput') fileInput!: ElementRef<HTMLInputElement>;
+
 	photoForm!: FormGroup;
 	preview!: string;
 	file!: File;
@@ -28,6 +36,10 @@ export class PhotoFormComponent implements OnInit {
 			description: ['', Validators.maxLength(300)],
 			allowComments: [true],
 		});
+	}
+
+	ngAfterViewInit(): void {
+		this.fileInput.nativeElement.focus();
 	}
 
 	handleConvertFileToBase64(file: File): void {

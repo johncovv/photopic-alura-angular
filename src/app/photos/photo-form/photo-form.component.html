@@ -23,7 +23,7 @@
 			></app-vmessage>
 		</div>
 		<ng-template #previewImage>
-			<div class="text-center w-100">
+			<div class="text-center w-100 shadow p-2 card">
 				<app-photo [url]="preview" title="Preview"> </app-photo>
 			</div>
 		</ng-template>
@@ -32,6 +32,7 @@
 	<div class="col-md-6">
 		<div class="form-group">
 			<textarea
+				#descriptionInput
 				maxlength="300"
 				formControlName="description"
 				class="form-control form-control-sm"

@@ -1,9 +1,9 @@
 <p *ngIf="!photos.length" class="text-center text-muted">Sorry, no photos</p>
 
-<ol class="linst-unstyled w-100">
+<ol class="linst-unstyled w-100 p-0">
 	<li *ngFor="let cols of rows" class="row no-gutters">
 		<div
-			class="w-30"
+			class="col-sm"
 			*ngFor="let photo of cols"
 			appDarkenOnHover
 			brightness="80"
