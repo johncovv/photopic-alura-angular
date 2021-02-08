@@ -44,13 +44,17 @@ export class PhotoService {
 		return this.http.get<IPhoto>(`${apiUrl}/photos/${photoId}`);
 	}
 
+	removePhoto(photoId: number) {
+		return this.http.delete(`${apiUrl}/photos/${photoId}`);
+	}
+
 	getComments(photoId: number): Observable<Array<IPhotoComment>> {
 		return this.http.get<Array<IPhotoComment>>(
 			`${apiUrl}/photos/${photoId}/comments`,
 		);
 	}
 
-	addComment(photoId: number, commentText: string) {
+	addComment(photoId: number, commentText: string): Observable<IPhotoComment> {
 		return this.http.post<IPhotoComment>(
 			`${apiUrl}/photos/${photoId}/comments`,
 			{
