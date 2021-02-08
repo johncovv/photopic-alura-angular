@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 
+import { IPhotoComment } from './photo-comment.d';
 import IPhoto, { IPhotoUpload } from './photo.d';
 
 const { apiUrl } = environment;
@@ -39,7 +40,25 @@ export class PhotoService {
 		return this.http.post(`${apiUrl}/photos/upload`, formData);
 	}
 
-	findById(photoId: string): Observable<IPhoto> {
+	findById(photoId: number): Observable<IPhoto> {
 		return this.http.get<IPhoto>(`${apiUrl}/photos/${photoId}`);
+	}
+
+	getComments(photoId: number): Observable<Array<IPhotoComment>> {
+		return this.http.get<Array<IPhotoComment>>(
+			`${apiUrl}/photos/${photoId}/comments`,
+		);
+	}
+
+	addComment(photoId: number, commentText: string) {
+		return this.http.post<IPhotoComment>(
+			`${apiUrl}/photos/${photoId}/comments`,
+			{
+				commentText,
+			},
+			{
+				observe: 'body',
+			},
+		);
 	}
 }
