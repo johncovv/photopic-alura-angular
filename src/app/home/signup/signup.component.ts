@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { PlatformDetectorService } from '../../core/platform-detector/platform.detector.service';
+import { AlertService } from '../../shared/components/alert/alert.service';
 import lowerCaseValidator from '../../shared/validators/lower-case.validator';
 import notStartWithNumber from '../../shared/validators/not-start-with-number.validator';
 
@@ -31,6 +32,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 		private signupService: SignupService,
 		private userNotTakenValidatorService: UserNotTakenValidatorService,
 		private platformDetectorService: PlatformDetectorService,
+		private alertService: AlertService,
 	) {}
 
 	ngOnInit() {
@@ -74,8 +76,17 @@ export class SignupComponent implements OnInit, AfterViewInit {
 	signup() {
 		const newUser = this.signupForm.getRawValue() as INewUser;
 
-		this.signupService.signup(newUser).subscribe(() => {
-			this.router.navigate(['']);
-		});
+		this.signupService.signup(newUser).subscribe(
+			() => {
+				this.alertService.success('User successfully registered!', true);
+				this.router.navigate(['/']);
+			},
+			(err) => {
+				console.error('SIGNUP ERROR:', err);
+				this.alertService.warning(
+					'Error when trying to register a user, try again later!',
+				);
+			},
+		);
 	}
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+import { UserService } from '../../core/user/user.service';
+import { AlertService } from '../../shared/components/alert/alert.service';
 import IPhoto from '../photo/photo';
 import { PhotoService } from '../photo/photo.service';
 
@@ -21,12 +23,22 @@ export class PhotoDetailsComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private photoService: PhotoService,
+		private alertService: AlertService,
+		private userService: UserService,
 	) {}
 
 	ngOnInit(): void {
 		this.photoId = (this.route.snapshot.params as { photoId: number }).photoId;
 
 		this.photo$ = this.photoService.findById(this.photoId);
+
+		this.photo$.subscribe(
+			() => {},
+			(err) => {
+				console.error('PHOTO NOT FOUND:', err);
+				this.router.navigate(['/not-found']);
+			},
+		);
 	}
 
 	remove(): void {
@@ -37,9 +49,13 @@ export class PhotoDetailsComponent implements OnInit {
 		if (allowRemove) {
 			this.photoService.removePhoto(this.photoId).subscribe(
 				() => {
-					this.router.navigate(['/']);
+					this.alertService.success('Photo removed!', true);
+					this.router.navigate(['/user', this.userService.getUserName()]);
 				},
-				(err) => console.error('DELETE PHOTO ERROR: ', err),
+				(err) => {
+					this.alertService.warning('Could not delete the photo!', true);
+					console.error('DELETE PHOTO ERROR: ', err);
+				},
 			);
 		}
 	}
