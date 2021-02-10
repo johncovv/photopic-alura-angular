@@ -14,7 +14,8 @@
 				</p>
 				<div class="text-left mb-4">
 					<span appShowIfLogged (click)="like(photo)">
-						<i class="fa fa-heart-o fa-2x mr-2 pull-left"></i>{{ photo.likes }}
+						<i class="fa fa-heart-o fa-2x mr-2 pull-left" role="button"></i
+						>{{ photo.likes }}
 					</span>
 					<span>
 						<i class="fa fa-comment-o fa-2x mr-2 ml-2"></i>{{ photo?.comments }}
@@ -23,6 +24,7 @@
 						appPhotoOwnerOnly
 						[ownedPhoto]="photo"
 						(click)="remove()"
+						role="button"
 						class="fa fa-trash-o fa-2x pull-right"
 					></i>
 				</div>
