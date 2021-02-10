@@ -12,8 +12,8 @@ import { AuthService } from '../../core/auth/auth.service';
 import { PlatformDetectorService } from '../../core/platform-detector/platform.detector.service';
 
 @Component({
-	templateUrl: './sigin.component.html',
-	styleUrls: ['./sigin.component.less'],
+	templateUrl: './signin.component.html',
+	styleUrls: ['./signin.component.less'],
 })
 export class SignInComponent implements OnInit, AfterViewInit {
 	@ViewChild('userNameInput') userName!: ElementRef<HTMLInputElement>;
