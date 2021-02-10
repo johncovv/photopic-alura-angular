@@ -1,6 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {
+	HttpClient,
+	HttpErrorResponse,
+	HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 
@@ -63,6 +68,22 @@ export class PhotoService {
 			{
 				observe: 'body',
 			},
+		);
+	}
+
+	like(photoId: number) {
+		return (
+			this.http
+				.post(`${apiUrl}/photos/${photoId}/like`, {}, { observe: 'response' })
+				// forces the return as Observable<boolean> with value true
+				.pipe(map(() => true))
+				// if there has an error, check if the status is 304 and return Observable<boolean> with value false
+				// or continue the error
+				.pipe(
+					catchError((err: HttpErrorResponse) => {
+						return err.status === 304 ? of(false) : throwError(err);
+					}),
+				)
 		);
 	}
 }

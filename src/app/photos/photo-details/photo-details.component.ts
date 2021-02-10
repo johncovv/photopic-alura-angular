@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { UserService } from '../../core/user/user.service';
 import { AlertService } from '../../shared/components/alert/alert.service';
-import IPhoto from '../photo/photo';
+import IPhoto from '../photo/photo.d';
 import { PhotoService } from '../photo/photo.service';
 
 @Component({
@@ -37,6 +37,21 @@ export class PhotoDetailsComponent implements OnInit {
 			(err) => {
 				console.error('PHOTO NOT FOUND:', err);
 				this.router.navigate(['/not-found']);
+			},
+		);
+	}
+
+	like(photo: IPhoto): void {
+		this.photoService.like(photo.id).subscribe(
+			(liked) => {
+				if (liked) {
+					this.photo$ = this.photoService.findById(photo.id);
+					this.alertService.success('Photo successfully liked!');
+				}
+			},
+			(err) => {
+				this.alertService.danger('Error on trying to like, try again later!');
+				console.error('ERROR LIKE PHOTO:', err);
 			},
 		);
 	}

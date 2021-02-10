@@ -13,7 +13,7 @@
 					{{ photo?.description }}
 				</p>
 				<div class="text-left mb-4">
-					<span appShowIfLogged>
+					<span appShowIfLogged (click)="like(photo)">
 						<i class="fa fa-heart-o fa-2x mr-2 pull-left"></i>{{ photo.likes }}
 					</span>
 					<span>
