@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotAuthenticatedGuard } from '../core/auth/not-authenticated.guard';
 
 import { HomeComponent } from './home.component';
-import { SigInComponent } from './sigin/sigin.component';
+import { SignInComponent } from './sigin/sigin.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -15,11 +15,17 @@ const routes: Routes = [
 		children: [
 			{
 				path: '',
-				component: SigInComponent,
+				component: SignInComponent,
+				data: {
+					title: 'Sign In',
+				},
 			},
 			{
 				path: 'register',
 				component: SignupComponent,
+				data: {
+					title: 'Sign Up',
+				},
 			},
 		],
 	},

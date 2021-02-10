@@ -7,7 +7,7 @@ import { VMessageModule } from '../shared/components/vmessage/vmessage.module';
 
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home.routing.module';
-import { SigInComponent } from './sigin/sigin.component';
+import { SignInComponent } from './sigin/sigin.component';
 import { SignupComponent } from './signup/signup.component';
 import { SignupService } from './signup/signup.service';
 
@@ -20,7 +20,7 @@ import { SignupService } from './signup/signup.service';
 		VMessageModule,
 		HomeRoutingModule,
 	],
-	declarations: [SigInComponent, SignupComponent, HomeComponent],
+	declarations: [SignInComponent, SignupComponent, HomeComponent],
 	providers: [SignupService],
 })
 export class HomeModule {}

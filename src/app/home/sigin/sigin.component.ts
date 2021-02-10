@@ -15,7 +15,7 @@ import { PlatformDetectorService } from '../../core/platform-detector/platform.d
 	templateUrl: './sigin.component.html',
 	styleUrls: ['./sigin.component.less'],
 })
-export class SigInComponent implements OnInit, AfterViewInit {
+export class SignInComponent implements OnInit, AfterViewInit {
 	@ViewChild('userNameInput') userName!: ElementRef<HTMLInputElement>;
 	loginForm!: FormGroup;
 
