@@ -1,6 +1,7 @@
 import {
 	HttpClient,
 	HttpErrorResponse,
+	HttpEvent,
 	HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -35,7 +36,7 @@ export class PhotoService {
 		});
 	}
 
-	upload(datas: IPhotoUpload) {
+	upload(datas: IPhotoUpload): Observable<HttpEvent<Record<string, any>>> {
 		const formData = new FormData();
 
 		formData.append('description', datas.description);
@@ -74,7 +75,7 @@ export class PhotoService {
 		);
 	}
 
-	like(photoId: number) {
+	like(photoId: number): Observable<boolean> {
 		return (
 			this.http
 				.post(`${apiUrl}/photos/${photoId}/like`, {}, { observe: 'response' })
