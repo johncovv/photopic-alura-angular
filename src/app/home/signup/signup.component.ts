@@ -16,6 +16,7 @@ import notStartWithNumber from '../../shared/validators/not-start-with-number.va
 import { INewUser } from './newUser.d';
 import { SignupService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
+import { userNamePasswordValidator } from './username-password-validator';
 
 @Component({
 	selector: 'app-signup',
@@ -36,36 +37,41 @@ export class SignupComponent implements OnInit, AfterViewInit {
 	) {}
 
 	ngOnInit() {
-		this.signupForm = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.email]],
-			fullName: [
-				'',
-				[
-					Validators.required,
-					Validators.minLength(3),
-					Validators.maxLength(40),
+		this.signupForm = this.formBuilder.group(
+			{
+				email: ['', [Validators.required, Validators.email]],
+				fullName: [
+					'',
+					[
+						Validators.required,
+						Validators.minLength(3),
+						Validators.maxLength(40),
+					],
 				],
-			],
-			userName: [
-				'',
-				[
-					Validators.required,
-					Validators.minLength(3),
-					Validators.maxLength(14),
-					lowerCaseValidator,
-					notStartWithNumber,
+				userName: [
+					'',
+					[
+						Validators.required,
+						Validators.minLength(3),
+						Validators.maxLength(14),
+						lowerCaseValidator,
+						notStartWithNumber,
+					],
+					this.userNotTakenValidatorService.checkUserNameTaken(),
 				],
-				this.userNotTakenValidatorService.checkUserNameTaken(),
-			],
-			password: [
-				'',
-				[
-					Validators.required,
-					Validators.minLength(5),
-					Validators.maxLength(24),
+				password: [
+					'',
+					[
+						Validators.required,
+						Validators.minLength(5),
+						Validators.maxLength(24),
+					],
 				],
-			],
-		});
+			},
+			{
+				validators: userNamePasswordValidator,
+			},
+		);
 	}
 
 	ngAfterViewInit(): void {
@@ -74,6 +80,9 @@ export class SignupComponent implements OnInit, AfterViewInit {
 	}
 
 	signup() {
+		// ends the function if the form is invalid, or something is pending
+		if (this.signupForm.invalid || this.signupForm.pending) return;
+
 		const newUser = this.signupForm.getRawValue() as INewUser;
 
 		this.signupService.signup(newUser).subscribe(
