@@ -6,7 +6,7 @@ import {
 	AfterViewInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '../../core/auth/auth.service';
 import { PlatformDetectorService } from '../../core/platform-detector/platform.detector.service';
@@ -18,15 +18,22 @@ import { PlatformDetectorService } from '../../core/platform-detector/platform.d
 export class SignInComponent implements OnInit, AfterViewInit {
 	@ViewChild('userNameInput') userName!: ElementRef<HTMLInputElement>;
 	loginForm!: FormGroup;
+	redirectTo?: string;
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private authService: AuthService,
 		private router: Router,
 		private platformDetectorService: PlatformDetectorService,
+		private activatedRoute: ActivatedRoute,
 	) {}
 
 	ngOnInit(): void {
+		this.activatedRoute.queryParams.subscribe(
+			(params: { redirectTo?: string }) =>
+				(this.redirectTo = params.redirectTo),
+		);
+
 		this.loginForm = this.formBuilder.group({
 			userName: ['', Validators.required],
 			password: ['', Validators.required],
@@ -46,8 +53,10 @@ export class SignInComponent implements OnInit, AfterViewInit {
 			(user) => {
 				const { name } = user.body;
 
-				// navigate to user page
-				this.router.navigate(['user', name]);
+				// navigate to user page or redirect from queryParams
+				this.redirectTo
+					? this.router.navigateByUrl(this.redirectTo)
+					: this.router.navigate(['user', name]);
 			},
 			(err) => {
 				console.error('ERROR:', err);
